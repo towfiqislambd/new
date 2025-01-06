@@ -27,9 +27,11 @@ import ManageBookings from './pages/Dashboard/adminDashboard/ManageBookings';
 import ManageItems from './pages/Dashboard/adminDashboard/ManageItems';
 import AddItems from './pages/Dashboard/adminDashboard/AddItems';
 import UpdateItem from './pages/Dashboard/adminDashboard/UpdateItem';
+import AdminRoutes from "./Routes/AdminRoutes"
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
+  // ******************** Landing Page ************************
   {
     path: "/",
     element: <Root></Root>,
@@ -62,12 +64,14 @@ const router = createBrowserRouter([
     ]
   },
 
-
+  // ******************** Dashboard ************************
   {
     path: "/dashboard",
     element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+
+      // User Dashboard
       {
         path: "/dashboard/userHome",
         element: <UserHome></UserHome>
@@ -92,29 +96,31 @@ const router = createBrowserRouter([
         path: "/dashboard/myBooking",
         element: <MyBooking></MyBooking>
       },
+
+      // Admin Dashboard
       {
         path: "/dashboard/adminHome",
-        element: <AdminHome></AdminHome>
+        element: <AdminRoutes><AdminHome></AdminHome></AdminRoutes>
       },
       {
         path: "/dashboard/addItems",
-        element: <AddItems></AddItems>
+        element: <AdminRoutes><AddItems></AddItems></AdminRoutes>
       },
       {
-        path: "/dashboard/updateItems",
-        element: <UpdateItem></UpdateItem>
+        path: "/dashboard/updateItems/:id",
+        element: <AdminRoutes><UpdateItem></UpdateItem></AdminRoutes>
       },
       {
         path: "/dashboard/manageItems",
-        element: <ManageItems></ManageItems>
+        element: <AdminRoutes><ManageItems></ManageItems></AdminRoutes>
       },
       {
         path: "/dashboard/manageBookings",
-        element: <ManageBookings></ManageBookings>
+        element: <AdminRoutes><ManageBookings></ManageBookings></AdminRoutes>
       },
       {
         path: "/dashboard/allUsers",
-        element: <AllUsers></AllUsers>
+        element: <AdminRoutes> <AllUsers></AllUsers></AdminRoutes>
       }
     ]
   }

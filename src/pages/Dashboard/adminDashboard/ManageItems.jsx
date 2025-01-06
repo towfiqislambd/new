@@ -1,15 +1,17 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useCart from "../../../hooks/useCart";
+import useMenu from "../../../hooks/useMenu";
 import SectionTitle from "../../../reuseableComponents/SectionTitle";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
-    const [cart, refetch] = useCart();
+    const [menu, refetch] = useMenu();
     const axiosSecure = useAxiosSecure();
+
     const handleDelete = _id => {
-        axiosSecure.delete(`carts/${_id}`)
+        axiosSecure.delete(`all-menu/${_id}`)
             .then(data => {
                 if (data.data.deletedCount > 0) {
                     Swal.fire({
@@ -26,7 +28,7 @@ const ManageItems = () => {
     return (
         <section>
             <SectionTitle heading='manage all items' subHeading='Hurry Up!'></SectionTitle>
-            <p className="text-xl font-semibold mb-5 text-gray-800">Total Items: 6</p>
+            <p className="text-xl font-semibold mb-5 text-gray-800">Total Items: {menu.length}</p>
             <div className="overflow-x-auto rounded-lg">
                 <table className="table bg-slate-200">
                     <thead className="bg-yellow-600">
@@ -40,7 +42,7 @@ const ManageItems = () => {
                     </thead>
                     <tbody>
                         {
-                            cart.map((singleCart, idx) => <tr key={singleCart._id}>
+                            menu.map((singleCart, idx) => <tr key={singleCart._id}>
                                 <th>{idx + 1}</th>
                                 <td>
                                     <div className="flex items-center gap-3">
@@ -53,8 +55,8 @@ const ManageItems = () => {
                                 </td>
                                 <td>{singleCart.name}</td>
                                 <td>${singleCart.price}</td>
-                                <th className="space-x-5">
-                                    <button onClick={() => handleDelete(singleCart._id)} className="bg-yellow-600 text-white p-2 rounded"><FiEdit className="text-xl" /></button>
+                                <th className="space-x-5 flex items-center">
+                                    <Link to={`/dashboard/updateItems/${singleCart._id}`} className="bg-yellow-600 inline-block text-white p-2 rounded"><FiEdit className="text-xl" /></Link>
                                     <button onClick={() => handleDelete(singleCart._id)} className="bg-error text-white p-2 rounded"><RiDeleteBin6Line className="text-xl" /></button>
                                 </th>
                             </tr>)

@@ -10,7 +10,7 @@ import cover3 from "../assets/menu/salad-bg.jpg"
 import cover4 from "../assets/menu/soup-bg.jpg"
 
 const OurMenu = () => {
-    const menu = useMenu();
+    const [menu] = useMenu();
     const offeredItems = menu.filter(item => item.category === 'offered')
     const dessertItems = menu.filter(item => item.category === 'dessert')
     const pizzaItems = menu.filter(item => item.category === 'pizza')

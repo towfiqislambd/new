@@ -49,7 +49,7 @@ const Dashboard = () => {
                     <div className="divider"></div>
                     <li><NavLink to='/' className="flex gap-2 items-center"><IoIosHome className="text-xl" /><span> home</span></NavLink></li>
                     <li><NavLink to='/ourMenu' className="flex gap-2 items-center"><FaBars className="text-xl" /><span>Menu</span></NavLink></li>
-                    <li><NavLink to='/ourShop' className="flex gap-2 items-center"><FaBagShopping className="text-xl" /><span>shop</span></NavLink></li>
+                    <li><NavLink to='/ourShop/salad' className="flex gap-2 items-center"><FaBagShopping className="text-xl" /><span>shop</span></NavLink></li>
                     <li><NavLink to='/contactUs' className="flex gap-2 items-center"><IoMdMail className="text-xl" /><span> Contact</span></NavLink></li>
                 </ul>
             </aside>

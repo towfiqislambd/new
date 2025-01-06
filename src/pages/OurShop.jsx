@@ -22,7 +22,7 @@ const OurShop = () => {
 
 
 
-    const menu = useMenu();
+    const [menu] = useMenu();
     const saladItems = menu.filter(item => item.category === 'salad')
     const pizzaItems = menu.filter(item => item.category === 'pizza')
     const soupItems = menu.filter(item => item.category === 'soup')
